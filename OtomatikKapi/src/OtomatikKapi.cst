@@ -1,0 +1,20 @@
+//Copyright (C)2014-2022 Gowin Semiconductor Corporation.
+//All rights reserved. 
+//File Title: Physical Constraints file
+//GOWIN Version: 1.9.8.10
+//Part Number: GW1NZ-LV1QN48C6/I5
+//Device: GW1NZ-1
+//Created Time: Sun 05 21 00:23:07 2023
+
+IO_LOC "red_led" 11;
+IO_PORT "red_led" PULL_MODE=UP DRIVE=8 BANK_VCCIO=1.8;
+IO_LOC "blue_led" 10;
+IO_PORT "blue_led" PULL_MODE=UP DRIVE=8 BANK_VCCIO=1.8;
+IO_LOC "green_led" 9;
+IO_PORT "green_led" PULL_MODE=UP DRIVE=8 BANK_VCCIO=1.8;
+IO_LOC "sensor" 44;
+IO_PORT "sensor" PULL_MODE=UP BANK_VCCIO=1.8;
+IO_LOC "reset" 13;
+IO_PORT "reset" PULL_MODE=UP BANK_VCCIO=1.8;
+IO_LOC "clk" 47;
+IO_PORT "clk" PULL_MODE=UP BANK_VCCIO=1.8;

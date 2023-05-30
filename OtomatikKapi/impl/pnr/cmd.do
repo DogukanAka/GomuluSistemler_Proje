@@ -1,0 +1,11 @@
+-d C:\Users\tosh\Desktop\gomulusistemlerproje193405031\OtomatikKapi\impl\gwsynthesis\OtomatikKapi.vg
+-p GW1NZ-1-QFN48-6
+-pn GW1NZ-LV1QN48C6/I5
+-cst C:\Users\tosh\Desktop\gomulusistemlerproje193405031\OtomatikKapi\src\OtomatikKapi.cst
+-cfg C:\Users\tosh\Desktop\gomulusistemlerproje193405031\OtomatikKapi\impl\pnr\device.cfg
+-bit
+-tr
+-ph
+-timing
+-cst_error
+-route_maxfan 10

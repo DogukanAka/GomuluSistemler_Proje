@@ -1,0 +1,182 @@
+//
+//Written by GowinSynthesis
+//Product Version "GowinSynthesis V1.9.8.10"
+//Mon May 29 15:01:09 2023
+
+//Source file index table:
+//file0 "\C:/Users/tosh/Desktop/gomulusistemlerproje193405031/OtomatikKapi/src/Kapi.v"
+`timescale 100 ps/100 ps
+module Automatic_Gate (
+  clk,
+  reset,
+  sensor,
+  green_led,
+  blue_led,
+  red_led
+)
+;
+input clk;
+input reset;
+input sensor;
+output green_led;
+output blue_led;
+output red_led;
+wire clk_d;
+wire reset_d;
+wire sensor_d;
+wire green_led_6;
+wire blue_led_6;
+wire red_led_6;
+wire n91_10;
+wire n92_11;
+wire n91_14;
+wire n93_10;
+wire n92_16;
+wire n92_18;
+wire n92_20;
+wire n90_20;
+wire [1:0] gate_state;
+wire [1:0] timer;
+wire VCC;
+wire GND;
+  IBUF clk_ibuf (
+    .O(clk_d),
+    .I(clk) 
+);
+  IBUF reset_ibuf (
+    .O(reset_d),
+    .I(reset) 
+);
+  IBUF sensor_ibuf (
+    .O(sensor_d),
+    .I(sensor) 
+);
+  OBUF green_led_obuf (
+    .O(green_led),
+    .I(green_led_6) 
+);
+  OBUF blue_led_obuf (
+    .O(blue_led),
+    .I(blue_led_6) 
+);
+  OBUF red_led_obuf (
+    .O(red_led),
+    .I(red_led_6) 
+);
+  LUT2 green_led_s4 (
+    .F(green_led_6),
+    .I0(gate_state[1]),
+    .I1(gate_state[0]) 
+);
+defparam green_led_s4.INIT=4'h4;
+  LUT2 blue_led_s4 (
+    .F(blue_led_6),
+    .I0(gate_state[0]),
+    .I1(gate_state[1]) 
+);
+defparam blue_led_s4.INIT=4'h4;
+  LUT2 red_led_s4 (
+    .F(red_led_6),
+    .I0(gate_state[0]),
+    .I1(gate_state[1]) 
+);
+defparam red_led_s4.INIT=4'h8;
+  LUT3 n91_s5 (
+    .F(n91_10),
+    .I0(timer[0]),
+    .I1(timer[1]),
+    .I2(gate_state[0]) 
+);
+defparam n91_s5.INIT=8'h1F;
+  LUT2 n92_s6 (
+    .F(n92_11),
+    .I0(gate_state[1]),
+    .I1(sensor_d) 
+);
+defparam n92_s6.INIT=4'h9;
+  LUT3 n91_s7 (
+    .F(n91_14),
+    .I0(gate_state[0]),
+    .I1(gate_state[1]),
+    .I2(sensor_d) 
+);
+defparam n91_s7.INIT=8'h14;
+  LUT4 n93_s5 (
+    .F(n93_10),
+    .I0(gate_state[1]),
+    .I1(sensor_d),
+    .I2(gate_state[0]),
+    .I3(timer[0]) 
+);
+defparam n93_s5.INIT=16'h09F0;
+  LUT4 n92_s9 (
+    .F(n92_16),
+    .I0(gate_state[0]),
+    .I1(timer[1]),
+    .I2(n92_11),
+    .I3(timer[0]) 
+);
+defparam n92_s9.INIT=16'hCD67;
+  LUT3 n92_s10 (
+    .F(n92_18),
+    .I0(gate_state[0]),
+    .I1(timer[1]),
+    .I2(timer[0]) 
+);
+defparam n92_s10.INIT=8'hFD;
+  LUT4 n92_s11 (
+    .F(n92_20),
+    .I0(gate_state[0]),
+    .I1(timer[1]),
+    .I2(timer[0]),
+    .I3(n92_16) 
+);
+defparam n92_s11.INIT=16'hFD00;
+  LUT4 n90_s9 (
+    .F(n90_20),
+    .I0(gate_state[0]),
+    .I1(timer[1]),
+    .I2(timer[0]),
+    .I3(gate_state[1]) 
+);
+defparam n90_s9.INIT=16'hFD02;
+  DFFCE gate_state_0_s1 (
+    .Q(gate_state[0]),
+    .D(n91_14),
+    .CLK(clk_d),
+    .CE(n91_10),
+    .CLEAR(reset_d) 
+);
+defparam gate_state_0_s1.INIT=1'b0;
+  DFFCE timer_0_s1 (
+    .Q(timer[0]),
+    .D(n93_10),
+    .CLK(clk_d),
+    .CE(n92_18),
+    .CLEAR(reset_d) 
+);
+defparam timer_0_s1.INIT=1'b0;
+  DFFC gate_state_1_s5 (
+    .Q(gate_state[1]),
+    .D(n90_20),
+    .CLK(clk_d),
+    .CLEAR(reset_d) 
+);
+defparam gate_state_1_s5.INIT=1'b0;
+  DFFC timer_1_s2 (
+    .Q(timer[1]),
+    .D(n92_20),
+    .CLK(clk_d),
+    .CLEAR(reset_d) 
+);
+defparam timer_1_s2.INIT=1'b0;
+  VCC VCC_cZ (
+    .V(VCC)
+);
+  GND GND_cZ (
+    .G(GND)
+);
+  GSR GSR (
+    .GSRI(VCC) 
+);
+endmodule /* Automatic_Gate */
